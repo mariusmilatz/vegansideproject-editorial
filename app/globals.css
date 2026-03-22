@@ -1,0 +1,4 @@
+body { margin: 0; font-family: sans-serif; background: #fafafa; }
+.site-header { display: flex; justify-content: space-between; padding: 24px; }
+.hero-section { padding: 80px 32px; }
+.hero-section h1 { font-size: 48px; }
