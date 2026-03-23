@@ -14,6 +14,7 @@ export default async function HomePage() {
         <p className="hero-copy">
           A calmer, cleaner home for recipes, meal plans, and kitchen notes.
         </p>
+        <p className="hero-actions"><Link href="/recipes">View all recipes</Link></p>
       </section>
 
       <section className="recipe-grid">
