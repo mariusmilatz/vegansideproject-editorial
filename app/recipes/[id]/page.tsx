@@ -4,7 +4,13 @@ import { mapRecipeDetail } from "../../../lib/notion/recipe-data"
 export default async function RecipePage({ params }: { params: { id: string } }) {
   const recipes = await getRecipes()
   const mapped = recipes.map(mapRecipeDetail)
-  const recipe = mapped.find((r) => r.id === params.id)
+  function normalize(id: string) {
+  return id.replace(/-/g, "")
+}
+
+const recipe = mapped.find(
+  (r) => normalize(r.id) === normalize(params.id)
+)
 
   if (!recipe) return <div>Recipe not found</div>
 
