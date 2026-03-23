@@ -1,6 +1,6 @@
 import { getNotionClient } from "./client"
 
-export async function getRecipes() {
+export async function getRecipes(): Promise<any[]> {
   const notion = getNotionClient()
 
   const databaseId = process.env.NOTION_RECIPES_DATABASE_ID
@@ -14,10 +14,10 @@ export async function getRecipes() {
     filter: {
       property: "Published",
       checkbox: {
-        equals: true
-      }
-    }
+        equals: true,
+      },
+    },
   })
 
-  return response.results
+  return response.results as any[]
 }

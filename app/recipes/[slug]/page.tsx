@@ -1,12 +1,13 @@
 import { getRecipes } from "@/lib/notion/queries"
 import { mapRecipeDetail } from "@/lib/notion/recipe-data"
 
-export default async function RecipeDetail({ params }: { params: { slug: string } }) {
+export default async function RecipeDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const recipes = await getRecipes()
 
-  const mapped = recipes.map(mapRecipeDetail)
+  const mapped = recipes.map((recipe: any) => mapRecipeDetail(recipe))
 
-  const recipe = mapped.find((r: any) => r.slug === params.slug)
+  const recipe = mapped.find((r: any) => r.slug === slug)
 
   if (!recipe) {
     return <div style={{ padding: 40 }}>Recipe not found</div>
